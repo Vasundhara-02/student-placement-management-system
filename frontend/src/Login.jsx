@@ -1,7 +1,7 @@
 import { useState } from "react";
 import api from "./api";
 
-function Login({ onLogin }) {
+function Login({ onLogin, onRegister }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -21,7 +21,8 @@ function Login({ onLogin }) {
       onLogin(response.data);
     } catch (error) {
       setError(
-        error.response?.data?.detail || "Invalid email or password"
+        error.response?.data?.detail ||
+          "Invalid email or password"
       );
     }
   };
@@ -58,12 +59,31 @@ function Login({ onLogin }) {
             required
           />
 
-          {error && <p className="login-error">{error}</p>}
+          {error && (
+            <p className="login-error">
+              {error}
+            </p>
+          )}
 
-          <button type="submit" className="primary-btn login-btn">
+          <button
+            type="submit"
+            className="primary-btn login-btn"
+          >
             Login
           </button>
         </form>
+
+        {onRegister && (
+          <p className="register-link">
+            Don't have an account?{" "}
+            <button
+              type="button"
+              onClick={onRegister}
+            >
+              Register here
+            </button>
+          </p>
+        )}
       </div>
     </div>
   );

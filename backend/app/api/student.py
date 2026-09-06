@@ -54,8 +54,12 @@ def register_student(
     return {
         "message": "Student registered successfully",
         "student_id": student.id,
-        "email": user.email
+        "user_id": user.id,
+        "name": user.name,
+        "email": user.email,
+        "role": user.role
     }
+
 
 @router.put("/{student_id}")
 def update_student_profile(
@@ -94,6 +98,7 @@ def update_student_profile(
         "skills": student.skills,
         "resume": student.resume
     }
+
 
 @router.get("/{student_id}")
 def get_student_profile(
